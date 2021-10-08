@@ -5,6 +5,7 @@
 <title>Math.random, Arrays, Animation/Effects</title>
 <style>
 	#quote { text-align: center; font-family: arial; font-size: 19px; font-eight: bold; color: white; display: none; font-weight: bold; padding-top: 14px; padding-left: 10px; padding-right: 10px; background-color: #69c2ff; height: 55px; width: 540px; margin: auto auto}
+	#customQ{margin: 10px auto;}
 	#container {text-align: center; width: 100%}
 	#lyrics {font-size: 32px; opacity: 0%; font-family: verdana; height: 50px}
 	 label {font-size: 14px; font-family: arial}
@@ -13,14 +14,17 @@
 <script>
 jQuery(
 	function() {
-	
-/*"The race is not to the swift but to those who keep running.";
-"Every blade of grass has its angel that bends over it and whispers, 'Grow, grow.' ";
-"When I let go of what I am, I become what I might be.";
-"The spaces between your fingers were created so that another's could fill them in.";
-"In the end, it's not going to matter how many breaths you took, but how many moments took your breath away.";
-"Don't cry because it's over, smile because it happened.";
-*/		
+		$("#myBtn").click(
+			function(){
+				let favQuotes = new Array;
+				favQuotes[0] = "The race is not to the swift but to those who keep running.";
+				favQuotes[1] = "Every blade of grass has its angel that bends over it and whispers, 'Grow, grow.'";
+				favQuotes[2] = "When I let go of what I am, I become what I might be.";
+				favQuotes[3] = "The spaces between your fingers were created so that another's could fill them in.";
+				favQuotes[4] = "In the end, it's not going to matter how many breaths you took, but how many moments took your breath away.";
+				favQuotes[5] = "Don't cry because it's over, smile because it happened.";
+			}//end anon nested function
+		);//end click event
 
 
 		let imagine = new Array();
@@ -48,7 +52,7 @@ jQuery(
       	</form><br>
          <form>
         	<label for="customQ">Enter your own quote here.</label>
-        	<input type="text" size="100" id="customQ"><input type="button" id="adder" value="Add New Quote">
+        	<input type="text" size="75" id="customQ"><input type="button" id="adder" value="Add New Quote">
         </form>   
          
         <p id="lyrics">
