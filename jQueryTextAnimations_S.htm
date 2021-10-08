@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Math.random, Arrays, Animation/Effects</title>
 <style>
-	#quote { text-align: center; font-family: arial; font-size: 19px; font-eight: bold; color: white; display: none; font-weight: bold; padding-top: 14px; padding-left: 10px; padding-right: 10px; background-color: #69c2ff; height: 55px; width: 540px; margin: auto auto}
+	#quote { text-align: center; font-family: arial; font-size: 19px; color: white; display: none; font-weight: bold; padding-top: 14px 10px 10px 0; background-color: #69c2ff; line-height: 25px; width: 540px; margin: 10px auto;}
 	#customQ{margin: 10px auto;}
 	#container {text-align: center; width: 100%}
 	#lyrics {font-size: 32px; opacity: 0%; font-family: verdana; height: 50px}
@@ -17,36 +17,40 @@ jQuery(
 		$("#myBtn").click(
 			function(){
 				let favQuotes = new Array;
+
 				favQuotes[0] = "The race is not to the swift but to those who keep running.";
 				favQuotes[1] = "Every blade of grass has its angel that bends over it and whispers, 'Grow, grow.'";
 				favQuotes[2] = "When I let go of what I am, I become what I might be.";
 				favQuotes[3] = "The spaces between your fingers were created so that another's could fill them in.";
 				favQuotes[4] = "In the end, it's not going to matter how many breaths you took, but how many moments took your breath away.";
 				favQuotes[5] = "Don't cry because it's over, smile because it happened.";
+
+				const quoteIndex = Math.floor(Math.random() * favQuotes.length);//generates random number
+
+				//innerHTML is ONLY for JS ------ in jQuery it's just .html method
+				$("#quote").html(favQuotes[quoteIndex]);//insert quote at whatever random generated number the index is into HTML body
+				$("#myBtn").prop("disabled", true);//true makes it so that the user can't click again until the quote tray slides all the way back in.
+
+				$("#quote").slideToggle("slow", function(){
+					setTimeout( function(){
+						$("#quote").slideToggle("slow");
+						$("#myBtn").prop("disabled", false);//false means the user can click
+					}, 5000//end anon nested function ---- this tells the tray to slide down and back up within 6s (6000)
+					)//end setTimeout
+				}); //end slideToggle --- shows tray serving the quote slide down from top
+
 			}//end anon nested function
 		);//end click event
 
 
-		let imagine = new Array();
-		imagine = new Array();
-		imagine[0] = "Imagine by John Lennon"
-		imagine[1] = "Imagine there's no heaven<br>It's easy if you try<br>No hell below us<br>Above us, only sky<br>Imagine all the people<br>Living for today";
-		imagine[2] = "Imagine there's no countries<br>It isn't hard to do<br>Nothing to kill or die for<br>And no religion too<br>Imagine all the people<br>Living life in peace<br>You";
-		imagine[3] = "You may say I'm a dreamer<br>But I'm not the only one<br>I hope someday you'll join us<br>And the world will be as one";
-		imagine[4] = "Imagine no possessions<br>I wonder if you can<br>No need for greed or hunger<br>A brotherhood of man<br>Imagine all the people<br>Sharing all the world<br>You";	
-		imagine[5] = "You may say I'm a dreamer<br>But I'm not the only one<br>I hope someday you'll join us<br>And the world will be as one";
-				
-			
-		}//end of master function
-	);//end of jQuery container
+		
 </script>
 
 </head>
 
 <body>
 	<div id="container">
-    	<div id="quote">
-    	</div>
+    	<div id="quote"></div>
     	<form>
     		<input type="button" id="myBtn" value="Click Here to See a Random Quote">
       	</form><br>
