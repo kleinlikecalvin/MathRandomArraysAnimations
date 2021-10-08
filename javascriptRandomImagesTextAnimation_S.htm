@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Math.random, Arrays, Fade Animation</title>
+<style>
+	#itemTitle {margin-top: 25px; width: 500px; text-align: center; font-family: arial; font-size: 20px; font-weight: bold}
+	#itemDescription{width: 500px; text-align: center; font-family: arial; font-size: 14px}
+	#btnContainer {height: 35px; width: 500px; text-align: center}
+	#faderContainer {height: 500px}
+
+</style>
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("winnerBtn").addEventListener("click",youWon);
+	}//end of load function
+);//end of load listener
+
+
+	/*"Congratulations!!<br>You've won the world's largest ball of rubberbands!!";
+	"Congratulations!!<br>You've won an all expense paid 2 week trip to Italy!!";
+	"Congratulations!!<br>You've won an empty box!!";
+	"Congratulations!!<br>You've won a beach homel!!";
+	"Congratulations!!<br>You've won this great fish wall decor!!";
+	"Congratulations!!<br>You've won the winning lottery ticket!!";
+		
+		const prizeDesc = new Array();
+		prizeDesc[0]="rubber bands description!!";
+		prizeDesc[1]="Italy vacation description!!";
+		prizeDesc[2]="empty box description!!";
+		prizeDesc[3]="beach home description!!";
+		prizeDesc[4]="fish decor description!!";
+		prizeDesc[5]="winning lottery ticket description!!";
+	*/
+
+</script>
+
+</head>
+<body>
+<div id="faderContainer">
+		<div id="itemTitle"></div><br>
+		<div style="height: 400px"><img src="images/win.jpg" id="theImage"></div>
+		<div id="itemDescription"></div>
+</div>
+
+<div id="btnContainer">
+	<input type="button" value="Click on the Button and See Whatya' Won!!!" id="winnerBtn">
+</div>
+</body>
+</html>
