@@ -42,7 +42,39 @@ jQuery(
 			}//end anon nested function
 		);//end click event
 
+		let imagine = new Array();
 
+		imagine[0] = "Imagine by John Lennon"
+		imagine[1] = "Imagine there's no heaven<br>It's easy if you try<br>No hell below us<br>Above us, only sky<br>Imagine all the people<br>Living for today";
+		imagine[2] = "Imagine there's no countries<br>It isn't hard to do<br>Nothing to kill or die for<br>And no religion too<br>Imagine all the people<br>Living life in peace<br>You";
+		imagine[3] = "You may say I'm a dreamer<br>But I'm not the only one<br>I hope someday you'll join us<br>And the world will be as one";
+		imagine[4] = "Imagine no possessions<br>I wonder if you can<br>No need for greed or hunger<br>A brotherhood of man<br>Imagine all the people<br>Sharing all the world<br>You";
+		imagine[5] = "You may say I'm a dreamer<br>But I'm not the only one<br>I hope someday you'll join us<br>And the world will be as one";
+
+		//we don't want user interaction to run the lyrics quotes so as the script is read it reaches here and thinks "oh, lemme run this function" then does it.
+		let i = 0;
+		$(runQuoter);
+		function runQuoter() {
+			if(i == imagine.length){
+				i=0;
+			}
+			setTimeout(
+				function () {
+					$("#lyrics").html(imagine[i]);
+					$("#lyrics").animate({opacity: 1}, 1000);
+					$("#lyrics").delay(1000).animate({opacity: 0}, 1000);
+					
+					if(i < imagine.length){
+					i++;//this works until we get to index five, then it just repeats so we need to reset to 0
+					}//end if
+
+					runQuoter();
+			}, 3000  //end anon nested function ----- creates a _s delay between each generator we've created. So the lyrics show _s after the quote ---- every duration of time used in the animate and delay methods must equal the total setTimeout duration
+			);//end setTimeout()
+		}//end runQuoter()
+
+	}//end of master function
+);//end of jQuery container
 		
 </script>
 
