@@ -1,51 +1,78 @@
 <!DOCTYPE html> 
 <html>
 <head>
-<meta charset="utf-8">
-<title>Math.random, Arrays, Fade Animation</title>
-<style>
-	#itemTitle {margin-top: 25px; width: 500px; text-align: center; font-family: arial; font-size: 20px; font-weight: bold}
-	#itemDescription{width: 500px; text-align: center; font-family: arial; font-size: 14px}
-	#btnContainer {height: 35px; width: 500px; text-align: center}
-	#faderContainer {height: 500px}
+	<meta charset="utf-8">
+	<title>Math.random, Arrays, Fade Animation</title>
+	<style>
+		#itemTitle {margin-top: 25px; width: 500px; text-align: center; font-family: arial; font-size: 20px; font-weight: bold}
+		#itemDescription{width: 500px; text-align: center; font-family: arial; font-size: 14px}
+		#btnContainer {height: 35px; width: 500px; text-align: center}
+		#faderContainer {height: 500px}
+		.faderIn{animation: fadeIn 2s;}
+	</style>
 
-</style>
-<script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+				document.getElementById("winnerBtn").addEventListener("click",youWon);
+			}//end of load function
+		);//end of load listener
 
-document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("winnerBtn").addEventListener("click",youWon);
-	}//end of load function
-);//end of load listener
+		const prize = ["rubberbands.jpg", "italy.jpg", "box.jpg", "fishDecor.jpg", "lottery.jpg", "beachHome.jpg"];
 
+		let i = -1; //because arrays start at 0
 
-	/*"Congratulations!!<br>You've won the world's largest ball of rubberbands!!";
-	"Congratulations!!<br>You've won an all expense paid 2 week trip to Italy!!";
-	"Congratulations!!<br>You've won an empty box!!";
-	"Congratulations!!<br>You've won a beach homel!!";
-	"Congratulations!!<br>You've won this great fish wall decor!!";
-	"Congratulations!!<br>You've won the winning lottery ticket!!";
-		
+		while(++i<prize.length){
+			const imageObj = new Image();
+			imageObj.src = "images/" + prize[i];
+
+		}	
+
+		const prizeTitle = new Array();
+
+		prizeTitle[0] = "Congratulations!!<br>You've won the world's largest ball of rubberbands!!";
+		prizeTitle[1] = "Congratulations!!<br>You've won an all expense paid 2 week trip to Italy!!";
+		prizeTitle[2] = "Congratulations!!<br>You've won an empty box!!";
+		prizeTitle[3] = "Congratulations!!<br>You've won this great fish wall decor!!";
+		prizeTitle[4] = "Congratulations!!<br>You've won the winning lottery ticket!!";
+		prizeTitle[5] = "Congratulations!!<br>You've won a beach home!!";
+			
 		const prizeDesc = new Array();
+
 		prizeDesc[0]="rubber bands description!!";
 		prizeDesc[1]="Italy vacation description!!";
 		prizeDesc[2]="empty box description!!";
-		prizeDesc[3]="beach home description!!";
-		prizeDesc[4]="fish decor description!!";
-		prizeDesc[5]="winning lottery ticket description!!";
-	*/
+		prizeDesc[3]= "fish decor description!!";
+		prizeDesc[4]= "winning lottery ticket description!!";
+		prizeDesc[5]= "beach home description!!";
 
-</script>
+		let previousWin = -1;//this is -1 because we need to use a while loop below to fix the possibility of consecutive multiple random number values matching in the very beginning. ex: click button get 0 get 0 get 0 get 1.
+		function youWon(){
+			let itemWon = Math.floor(Math.random() * prize.length);//generates random number
 
+			while(previousWin == itemWon){
+				itemWon = Math.floor(Math.random() * prize.length);
+			}//end while
+
+			document.getElementById("theImage").src = "images/" + prize[itemWon];
+			document.getElementById("itemTitle").innerHTML = prizeTitle[itemWon];
+			document.getElementById("itemDescription").innerHTML = prizeDesc[itemWon];
+
+			previousWin = itemWon;//save the previous win number value
+		}//end youWon()
+	
+
+	</script>
 </head>
-<body>
-<div id="faderContainer">
-		<div id="itemTitle"></div><br>
-		<div style="height: 400px"><img src="images/win.jpg" id="theImage"></div>
-		<div id="itemDescription"></div>
-</div>
 
-<div id="btnContainer">
-	<input type="button" value="Click on the Button and See Whatya' Won!!!" id="winnerBtn">
-</div>
+<body>
+	<div id="faderContainer">
+			<div id="itemTitle"></div><br>
+			<div style="height: 400px"><img src="images/win.jpg" id="theImage"></div>
+			<div id="itemDescription"></div>
+	</div>
+
+	<div id="btnContainer">
+		<input type="button" value="Click on the Button and See Whatya' Won!!!" id="winnerBtn">
+	</div>
 </body>
 </html>
