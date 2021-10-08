@@ -9,6 +9,24 @@
 		#btnContainer {height: 35px; width: 500px; text-align: center}
 		#faderContainer {height: 500px}
 		.faderIn{animation: fadeIn 2s;}
+		.faderOut{animation: faderOut 2s;}
+
+		@keyframes fadeIn {
+			from{
+				opacity: 0; /*transparent*/
+			}
+			to{
+				opacity: 1; /*opaque*/
+			}
+		}
+		@keyframes fadeOut {
+			from{
+				opacity: 1; 
+			}
+			to{
+				opacity: 0;
+			}
+		}
 	</style>
 
 	<script>
@@ -53,12 +71,20 @@
 				itemWon = Math.floor(Math.random() * prize.length);
 			}//end while
 
-			document.getElementById("theImage").src = "images/" + prize[itemWon];
+			document.getElementById("faderContainer").className = "faderOut";
+
+			//delay the fadeIn for two seconds so that both faderIn and faderOut can be visible
+			setTimeout(function(){
+							document.getElementById("theImage").src = "images/" + prize[itemWon];
 			document.getElementById("itemTitle").innerHTML = prizeTitle[itemWon];
 			document.getElementById("itemDescription").innerHTML = prizeDesc[itemWon];
+			document.getElementById("faderContainer").className = "faderIn";
+			}, 100//end function
+			);//end setTimeout
+	
 
 			previousWin = itemWon;//save the previous win number value
-		}//end youWon()
+		};//end youWon()
 	
 
 	</script>
